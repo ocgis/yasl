@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  get 'selections/new'
+
   resources :items
 
-  resources :lists
+  resources :lists do
+    member do
+      get 'delete_checked'
+    end
+  end
+
+  resources :selections
 
   root 'lists#index'
 

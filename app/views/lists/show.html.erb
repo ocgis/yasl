@@ -1,9 +1,13 @@
-<p id="notice"><%= notice %></p>
-
+<div data-role="header">
 <p>
-  <strong>Name:</strong>
   <%= @list.name %>
+  <%= link_to "Add item", { controller: "selections", action: "new", list_id: @list.id}, { data: { ajax: 'false' } } %>
+  <%= link_to "Delete checked", { action: "delete_checked" }, { remote: true } %>
 </p>
+</div >
+<div data-role="main" class="ui-content">
+<div id="selections">
+<%= render Selection.sortera(@list.selections) %>
+</div>
+</div>
 
-<%= link_to 'Edit', edit_list_path(@list) %> |
-<%= link_to 'Back', lists_path %>

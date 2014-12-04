@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_checked]
 
   # GET /lists
   # GET /lists.json
@@ -58,6 +58,17 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def delete_checked
+    checked = @list.selections.select { |selection| selection.status == 'checked' }
+    checked.each do |c|
+      c.destroy
+    end
+
+    respond_to do |format|
+      format.js { render "replace_html", :locals => { :objects => Selection.sortera(@list.selections), :replaceElem => "selections" } }
     end
   end
 

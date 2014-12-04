@@ -1,0 +1,4 @@
+$('#<%= replaceElem %>').html('<%= escape_javascript render(objects)%>');
+window.init_lists();
+$('[data-role="main"]').trigger('create');
+
