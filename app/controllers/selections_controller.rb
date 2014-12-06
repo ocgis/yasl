@@ -4,6 +4,7 @@ class SelectionsController < ApplicationController
 
   def new
     @selection = Selection.new()
+    @items = Item.all()
   end
 
   # POST /selections
@@ -33,6 +34,10 @@ class SelectionsController < ApplicationController
         format.json { render json: @selection.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def gcreate
+    create
   end
 
   # PATCH/PUT /selections/1

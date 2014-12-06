@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :selections
+  resources :selections do
+    collection do
+      get 'gcreate'
+    end
+  end
 
   root 'lists#index'
 
