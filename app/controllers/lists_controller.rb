@@ -67,6 +67,7 @@ class ListsController < ApplicationController
       c.destroy
     end
 
+    set_list
     respond_to do |format|
       format.js { render "replace_html", :locals => { :objects => Selection.sortera(@list.selections), :replaceElem => "selections" } }
     end
