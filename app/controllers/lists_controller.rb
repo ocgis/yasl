@@ -64,6 +64,11 @@ class ListsController < ApplicationController
   def delete_checked
     checked = @list.selections.select { |selection| selection.status == 'checked' }
     checked.each do |c|
+      if c.item.buycounter == 0
+        c.item.first_bought_at = Time.now
+      end
+      c.item.buycounter = c.item.buycounter + 1
+      c.item.save
       c.destroy
     end
 
