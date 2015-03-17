@@ -5,10 +5,14 @@ class SelectionsController < ApplicationController
   def new
     @selection = Selection.new()
 
+    selected_item_ids = @list.selections.collect { |selection| selection.item_id }
+
     now = Time.now
-    top_items = Item.where("buycounter > 1").sort { |b,a| sortindex(now, a)  <=> sortindex(now, b) }
-    middle_items = Item.where("buycounter = 1").sort { |b,a| a.first_bought_at <=> b.first_bought_at }
-    bottom_items = Item.where("buycounter = 0").sort { |b,a| a.created_at <=> b.created_at }
+    
+    items = Item.where.not(id: selected_item_ids)
+    top_items = items.where("buycounter > 1").sort { |b,a| sortindex(now, a)  <=> sortindex(now, b) }
+    middle_items = items.where("buycounter = 1").sort { |b,a| a.first_bought_at <=> b.first_bought_at }
+    bottom_items = items.where("buycounter = 0").sort { |b,a| a.created_at <=> b.created_at }
     @items = top_items + middle_items + bottom_items
   end
 
