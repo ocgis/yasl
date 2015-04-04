@@ -22,6 +22,6 @@
 
 <ul data-role="listview" data-filter="true" data-input="#itemFilter">
   <% @items.each do |item| %>
-  <li><%= link_to item.name, { action: "gcreate", selection: { item_id: item.name, list_id: @list.id } }, { data: { ajax: "false" } } %></li>
+  <li><%= link_to selection_name(item), { action: "gcreate", selection: { item_id: item.name, list_id: @list.id } }, { data: { ajax: "false" } } %></li>
   <% end %>
 </ul>
