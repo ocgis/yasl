@@ -5,7 +5,7 @@ class Selection < ActiveRecord::Base
   def self.sortera(selections)
     checked = []
     unchecked = []
-    selections.each do |selection|
+    selections.reverse.each do |selection|
       if selection.status == 'checked'
         checked.append(selection)
       else
