@@ -10,10 +10,11 @@ class SelectionsController < ApplicationController
     now = Time.now
     
     items = Item.where.not(id: selected_item_ids)
-    top_items = items.where("buycounter > 1").sort { |b,a| sortindex(now, a)  <=> sortindex(now, b) }
+    top_items = items.where("buycounter > 1").select { |a| sortindex(now, a) <= 3 }.sort { |b,a| sortindex(now, a)  <=> sortindex(now, b) }
     middle_items = items.where("buycounter = 1").sort { |b,a| a.first_bought_at <=> b.first_bought_at }
     bottom_items = items.where("buycounter = 0").sort { |b,a| a.created_at <=> b.created_at }
-    @items = top_items + middle_items + bottom_items
+    unpopular_items = items.where("buycounter > 1").select { |a| sortindex(now, a) > 3 }.sort { |b,a| sortindex(now, a)  <=> sortindex(now, b) }
+    @items = top_items + middle_items +  bottom_items + unpopular_items
   end
 
   # POST /selections
