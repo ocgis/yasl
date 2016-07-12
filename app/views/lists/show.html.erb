@@ -1,9 +1,9 @@
 <div data-role="header">
 <p>
   <%= @list.name %>
-  <%= link_to "Add", { controller: "selections", action: "new", list_id: @list.id}, { data: { ajax: 'false' } } %>
-  <%= link_to "Bought", { action: "delete_checked" }, { remote: true } %>
   <%= link_to "Will not buy", { action: "forget_checked" }, { remote: true } %>
+  <%= link_to "Bought", { action: "delete_checked" }, { remote: true } %>
+  <%= link_to "Add", { controller: "selections", action: "new", list_id: @list.id}, { data: { ajax: 'false' } } %>
 </p>
 </div >
 <div data-role="main" class="ui-content">
