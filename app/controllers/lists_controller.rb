@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_checked]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_checked, :forget_checked]
 
   # GET /lists
   # GET /lists.json
@@ -69,6 +69,18 @@ class ListsController < ApplicationController
       end
       c.item.buycounter = c.item.buycounter + 1
       c.item.save
+      c.destroy
+    end
+
+    set_list
+    respond_to do |format|
+      format.js { render "replace_html", :locals => { :objects => Selection.sortera(@list.selections), :replaceElem => "selections" } }
+    end
+  end
+
+  def forget_checked
+    checked = @list.selections.select { |selection| selection.status == 'checked' }
+    checked.each do |c|
       c.destroy
     end
 

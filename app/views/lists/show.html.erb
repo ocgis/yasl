@@ -2,7 +2,8 @@
 <p>
   <%= @list.name %>
   <%= link_to "Add item", { controller: "selections", action: "new", list_id: @list.id}, { data: { ajax: 'false' } } %>
-  <%= link_to "Delete checked", { action: "delete_checked" }, { remote: true } %>
+  <%= link_to "Bought checked", { action: "delete_checked" }, { remote: true } %>
+  <%= link_to "Will not buy checked", { action: "forget_checked" }, { remote: true } %>
 </p>
 </div >
 <div data-role="main" class="ui-content">

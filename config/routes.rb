@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :lists do
     member do
       get 'delete_checked'
+      get 'forget_checked'
     end
   end
 
