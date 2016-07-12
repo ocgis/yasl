@@ -1,3 +1,5 @@
+<div data-role="header" data-position="fixed">
+Add item to <%= @list.name %>
 <%= form_for(@selection, :class => "ui-filterable", :data => { :ajax => "false" } ) do |f| %>
   <% if @selection.errors.any? %>
     <div id="error_explanation">
@@ -19,9 +21,12 @@
     <%= f.submit("Add item") %>
   </div>
 <% end %>
+</div>
 
+<div data-role="main">
 <ul data-role="listview" data-filter="true" data-input="#itemFilter">
   <% @items.each do |item| %>
   <li><%= link_to selection_name(item), { action: "gcreate", selection: { item_id: item.name, list_id: @list.id } }, { data: { ajax: "false" } } %></li>
   <% end %>
 </ul>
+</div>
