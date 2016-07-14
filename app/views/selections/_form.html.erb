@@ -15,7 +15,7 @@ Add item to <%= @list.name %>
 
   <div class="field">
     <%= f.hidden_field :list_id, :value => @list.id %>
-    <%= f.text_field :item_id, :id => "itemFilter" %>
+    <%= f.text_field :item_id, :id => "itemFilter", :autocomplete => "off" %>
   </div>
   <div class="actions">
     <%= f.submit("Add item") %>
