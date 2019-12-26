@@ -18,12 +18,12 @@ set :stage, :staging
 
 server '127.0.0.1', user: 'rails', roles: %w{web app}
 
-set :rails_env, "test"
+set :rails_env, "staging"
 
 set :deploy_to, '/home/rails/yasl_staging'
 set :branch, 'staging'
 
-set :linked_files, %w{config/database.yml config/secrets.yml db/test.sqlite3}
+set :linked_files, %w{config/database.yml config/secrets.yml db/staging.sqlite3}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
