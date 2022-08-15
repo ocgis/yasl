@@ -35,4 +35,5 @@ gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
 gem 'puma', group: :development
 
+gem 'stringio', '= 3.0.1'
 gem 'strscan', '= 3.0.1'
