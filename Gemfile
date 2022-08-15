@@ -34,3 +34,5 @@ gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 # gem 'debugger', group: [:development, :test]
 
 gem 'puma', group: :development
+
+gem 'strscan', '= 3.0.1'
