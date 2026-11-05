@@ -1,5 +1,6 @@
   <%=  form_for(selection, remote: true) do |f| %>
+  <%     item_name = selection.item.nil? ? "(nil)" : selection.item.name %>
   <%=    f.hidden_field :list_id, :value => selection.list.id %>
   <%=    f.check_box(:status, { class: "selectionStatus", id: "selection_" + selection.id.to_s }, "checked", "unchecked") %>
-  <%=    f.label selection.id.to_s, selection.item.name %>
+  <%=    f.label selection.id.to_s, item_name %>
   <%   end %>
